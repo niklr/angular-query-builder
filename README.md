@@ -11,6 +11,7 @@ Additional features:
 * Autocomplete based on selected options implemented with Bootstrap's typeahead plugin.
 * Dynamic source fields based on selected source types.
 * Dynamic comparison operators based on selected source field.
+* Nested form validation.
 * Configurable maximum for groups and conditions.
 * Fancy enter and leave animations for groups and conditions.
 
