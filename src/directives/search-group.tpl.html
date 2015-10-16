@@ -1,0 +1,43 @@
+﻿<div class="aqb-search-group">
+    <div class="aqb-search-group-head">
+        <div ng-show="sourceTypes.length > 1">
+            <div class="aqb-nav-pills-container">
+                <ul class="nav nav-pills">
+                    <li ng-repeat="type in sourceTypes | orderBy:'position'" ng-class="type.name == selectedSourceType.name ? 'active' : ''">
+                        <a href="javascript:void(0)" ng-click="selectSourceType(type)">{{type.displayName}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="vertical-divider"></div>
+        </div>
+        <div>
+            <div class="aqb-nav-pills-container">
+                <ul class="nav nav-pills">
+                    <li ng-repeat="operator in logicalOperators | orderBy:'position'" ng-class="operator.name == selectedLogicalOperator.name ? 'active' : ''">
+                        <a href="javascript:void(0)" ng-click="selectLogicalOperator(operator)">{{operator.displayName}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="vertical-divider"></div>
+        </div>
+        <button class="btn" type="button" ng-click="addGroup()" ng-show="canAddGroup()"><i class="icon-plus-sign"></i></button>
+        <button class="btn" type="button" ng-click="removeGroup()" ng-show="canRemoveGroup()"><i class="icon-minus-sign"></i></button>
+    </div>
+    <div class="horizontal-divider"></div>
+    <div class="aqb-search-group-body">
+        <div class="animate-combined" ng-repeat="condition in group.conditions | orderBy:'index'">
+            <div search-condition
+                 condition="condition"
+                 condition-index="$index"
+                 source-type="selectedSourceType"></div>
+        </div>
+        <div class="animate-combined" ng-repeat="innerGroup in group.groups | orderBy:'index'">
+            <div search-group
+                 search-container="searchContainer"
+                 groups="group.groups"
+                 group-index="$index"
+                 source-types="sourceTypes"
+                 logical-operators="logicalOperators"></div>
+        </div>
+    </div>
+</div>

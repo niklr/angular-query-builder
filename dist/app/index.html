@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Angular Query Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="libraries/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="libraries/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+</head>
+<body ng-app="app">
+    <div ng-controller="MainController">
+        <div class="container" style="margin-top: 30px">
+            <div class="hero-unit">
+                <h2>
+                    Angular Query Builder
+                    <small>v{{appVersion}} / based on AngularJS and Bootstrap</small>
+                </h2>
+            </div>
+            <div>
+                <form name="searchForm" ng-submit="search(searchForm, $event)">
+                    <div class="aqb-search-form-body">
+                        <div class="animate-combined" ng-repeat="group in searchContainer.groups | orderBy:'index'">
+                            <div search-group
+                                 search-container="searchContainer"
+                                 groups="searchContainer.groups"
+                                 group-index="$index"
+                                 source-types="sourceTypes"
+                                 logical-operators="logicalOperators"></div>
+                        </div>
+                    </div>
+                    <div class="aqb-search-form-footer">
+                        <button type="submit" class="btn" ng-disabled="searchForm.$invalid">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="!!output">
+                <pre ng-bind-html="output"></pre>
+            </div>
+            <div>
+                <pre>{{jsonOutput}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var angular_query_builder_version = "1.0.0";
+    </script>
+
+    <script src="libraries/jquery/jquery.js"></script>
+    <script src="libraries/bootstrap/js/bootstrap.js"></script>
+    <script src="libraries/angular/angular.js"></script>
+    <script src="libraries/angular/angular-animate.js"></script>
+    <script src="libraries/underscore/underscore.js"></script>
+    <script src="js/angular-query-builder-templates.js"></script>
+    <script src="js/angular-query-builder.min.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+</html>
