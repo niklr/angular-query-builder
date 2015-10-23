@@ -15,7 +15,8 @@
            type="text"
            id="{{searchConditionInputItemId}}"
            ng-model="inputItem.displayName"
-           ng-class="searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''" required>
+           ng-class="searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''" 
+           autocomplete="off" required>
 
     <button class="btn" type="submit" ng-click="addCondition(searchConditionForm, $event)" ng-show="canAddCondition(conditionIndex)"><i class="icon-plus-sign"></i></button>
     <button class="btn" type="button" ng-click="removeCondition(conditionIndex)" ng-show="canRemoveCondition(conditionIndex)"><i class="icon-minus-sign"></i></button>

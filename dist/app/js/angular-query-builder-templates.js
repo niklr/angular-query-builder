@@ -19,7 +19,8 @@ angular.module("directives/search-condition.tpl.html", []).run(["$templateCache"
     "           type=\"text\"\n" +
     "           id=\"{{searchConditionInputItemId}}\"\n" +
     "           ng-model=\"inputItem.displayName\"\n" +
-    "           ng-class=\"searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''\" required>\n" +
+    "           ng-class=\"searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''\" \n" +
+    "           autocomplete=\"off\" required>\n" +
     "\n" +
     "    <button class=\"btn\" type=\"submit\" ng-click=\"addCondition(searchConditionForm, $event)\" ng-show=\"canAddCondition(conditionIndex)\"><i class=\"icon-plus-sign\"></i></button>\n" +
     "    <button class=\"btn\" type=\"button\" ng-click=\"removeCondition(conditionIndex)\" ng-show=\"canRemoveCondition(conditionIndex)\"><i class=\"icon-minus-sign\"></i></button>\n" +
