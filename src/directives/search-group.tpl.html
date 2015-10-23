@@ -8,7 +8,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="vertical-divider"></div>
+            <div class="aqb-vertical-divider"></div>
         </div>
         <div>
             <div class="aqb-nav-pills-container">
@@ -18,20 +18,20 @@
                     </li>
                 </ul>
             </div>
-            <div class="vertical-divider"></div>
+            <div class="aqb-vertical-divider"></div>
         </div>
         <button class="btn" type="button" ng-click="addGroup()" ng-show="canAddGroup()"><i class="icon-plus-sign"></i></button>
         <button class="btn" type="button" ng-click="removeGroup()" ng-show="canRemoveGroup()"><i class="icon-minus-sign"></i></button>
     </div>
-    <div class="horizontal-divider"></div>
+    <div class="aqb-horizontal-divider"></div>
     <div class="aqb-search-group-body">
-        <div class="animate-combined" ng-repeat="condition in group.conditions | orderBy:'index'">
+        <div class="aqb-animate-combined" ng-repeat="condition in group.conditions | orderBy:'index'">
             <div search-condition
                  condition="condition"
                  condition-index="$index"
                  source-type="selectedSourceType"></div>
         </div>
-        <div class="animate-combined" ng-repeat="innerGroup in group.groups | orderBy:'index'">
+        <div class="aqb-animate-combined" ng-repeat="innerGroup in group.groups | orderBy:'index'">
             <div search-group
                  search-container="searchContainer"
                  groups="group.groups"

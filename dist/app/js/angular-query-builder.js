@@ -1,4 +1,5 @@
-/*! angular-query-builder - v1.0.0 - 2015-10-16 */
+/*! angular-query-builder - v1.0.0 - 2015-10-23 */
+/*! https://github.com/niklr/angular-query-builder */
 angular.module('angular-query-builder', [
     'ngAnimate',
     'templates-aqb',

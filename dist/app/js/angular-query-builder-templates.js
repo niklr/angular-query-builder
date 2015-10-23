@@ -3,20 +3,23 @@ angular.module('templates-aqb', ['directives/search-condition.tpl.html', 'direct
 angular.module("directives/search-condition.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directives/search-condition.tpl.html",
     "<form class=\"form-inline aqb-search-condition\" name=\"searchConditionForm\">\n" +
-    "    <select ng-change=\"selectSourceField()\"\n" +
+    "    <select name=\"sourceField\"\n" +
+    "            ng-change=\"selectSourceField()\"\n" +
     "            ng-model=\"selectedSourceField\"\n" +
-    "            ng-class=\"searchConditionForm.$submitted && searchConditionForm.sourceField.$error.required ? 'input-error' : ''\"\n" +
+    "            ng-class=\"searchConditionForm.$submitted && searchConditionForm.sourceField.$error.required ? 'aqb-input-error' : ''\"\n" +
     "            ng-options=\"f.displayName for f in sourceType.sourceFields | orderBy:'position'\" required></select>\n" +
     "\n" +
-    "    <select ng-change=\"selectComparisonOperator()\"\n" +
+    "    <select name=\"comparisonOperator\"\n" +
+    "            ng-change=\"selectComparisonOperator()\"\n" +
     "            ng-model=\"selectedComparisonOperator\"\n" +
-    "            ng-class=\"searchConditionForm.$submitted && searchConditionForm.comparisonOperator.$error.required ? 'input-error' : ''\"\n" +
+    "            ng-class=\"searchConditionForm.$submitted && searchConditionForm.comparisonOperator.$error.required ? 'aqb-input-error' : ''\"\n" +
     "            ng-options=\"o.displayName for o in selectedSourceField.comparisonOperators | orderBy:'position'\" required></select>\n" +
     "\n" +
-    "    <input type=\"text\"\n" +
+    "    <input name=\"inputItem\"\n" +
+    "           type=\"text\"\n" +
     "           id=\"{{searchConditionInputItemId}}\"\n" +
     "           ng-model=\"inputItem.displayName\"\n" +
-    "           ng-class=\"searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'input-error' : ''\" required>\n" +
+    "           ng-class=\"searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''\" required>\n" +
     "\n" +
     "    <button class=\"btn\" type=\"submit\" ng-click=\"addCondition(searchConditionForm, $event)\" ng-show=\"canAddCondition(conditionIndex)\"><i class=\"icon-plus-sign\"></i></button>\n" +
     "    <button class=\"btn\" type=\"button\" ng-click=\"removeCondition(conditionIndex)\" ng-show=\"canRemoveCondition(conditionIndex)\"><i class=\"icon-minus-sign\"></i></button>\n" +
@@ -35,7 +38,7 @@ angular.module("directives/search-group.tpl.html", []).run(["$templateCache", fu
     "                    </li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
-    "            <div class=\"vertical-divider\"></div>\n" +
+    "            <div class=\"aqb-vertical-divider\"></div>\n" +
     "        </div>\n" +
     "        <div>\n" +
     "            <div class=\"aqb-nav-pills-container\">\n" +
@@ -45,20 +48,20 @@ angular.module("directives/search-group.tpl.html", []).run(["$templateCache", fu
     "                    </li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
-    "            <div class=\"vertical-divider\"></div>\n" +
+    "            <div class=\"aqb-vertical-divider\"></div>\n" +
     "        </div>\n" +
     "        <button class=\"btn\" type=\"button\" ng-click=\"addGroup()\" ng-show=\"canAddGroup()\"><i class=\"icon-plus-sign\"></i></button>\n" +
     "        <button class=\"btn\" type=\"button\" ng-click=\"removeGroup()\" ng-show=\"canRemoveGroup()\"><i class=\"icon-minus-sign\"></i></button>\n" +
     "    </div>\n" +
-    "    <div class=\"horizontal-divider\"></div>\n" +
+    "    <div class=\"aqb-horizontal-divider\"></div>\n" +
     "    <div class=\"aqb-search-group-body\">\n" +
-    "        <div class=\"animate-combined\" ng-repeat=\"condition in group.conditions | orderBy:'index'\">\n" +
+    "        <div class=\"aqb-animate-combined\" ng-repeat=\"condition in group.conditions | orderBy:'index'\">\n" +
     "            <div search-condition\n" +
     "                 condition=\"condition\"\n" +
     "                 condition-index=\"$index\"\n" +
     "                 source-type=\"selectedSourceType\"></div>\n" +
     "        </div>\n" +
-    "        <div class=\"animate-combined\" ng-repeat=\"innerGroup in group.groups | orderBy:'index'\">\n" +
+    "        <div class=\"aqb-animate-combined\" ng-repeat=\"innerGroup in group.groups | orderBy:'index'\">\n" +
     "            <div search-group\n" +
     "                 search-container=\"searchContainer\"\n" +
     "                 groups=\"group.groups\"\n" +

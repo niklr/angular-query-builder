@@ -19,10 +19,10 @@
                     <small>v{{appVersion}} / based on AngularJS and Bootstrap</small>
                 </h2>
             </div>
-            <div>
+            <div class="aqb-search-form">
                 <form name="searchForm" ng-submit="search(searchForm, $event)">
                     <div class="aqb-search-form-body">
-                        <div class="animate-combined" ng-repeat="group in searchContainer.groups | orderBy:'index'">
+                        <div class="aqb-animate-combined" ng-repeat="group in searchContainer.groups | orderBy:'index'">
                             <div search-group
                                  search-container="searchContainer"
                                  groups="searchContainer.groups"
@@ -35,9 +35,9 @@
                         <button type="submit" class="btn" ng-disabled="searchForm.$invalid">Search</button>
                     </div>
                 </form>
-            </div>
-            <div ng-show="!!output">
-                <pre ng-bind-html="output"></pre>
+                <div ng-show="!!output">
+                    <pre ng-bind-html="output"></pre>
+                </div>
             </div>
             <div>
                 <pre>{{jsonOutput}}</pre>
@@ -54,7 +54,7 @@
     <script src="libraries/angular/angular.js"></script>
     <script src="libraries/angular/angular-animate.js"></script>
     <script src="libraries/underscore/underscore.js"></script>
-    <script src="js/angular-query-builder-templates.js"></script>
+    <script src="js/angular-query-builder-templates.min.js"></script>
     <script src="js/angular-query-builder.min.js"></script>
     <script src="main.js"></script>
 

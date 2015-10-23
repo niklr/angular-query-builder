@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask('release-watch', ['release', 'watch:release']);
-  grunt.registerTask('release', ['clean:dist', 'concat', 'uglify', 'copy:all', 'jshint', 'html2js']);
+  grunt.registerTask('release', ['clean:dist', 'concat', 'uglify:app_main', 'copy:all', 'jshint', 'html2js', 'uglify:app_templates']);
   grunt.registerTask('timestamp', function() {
 	grunt.log.subhead(Date());
   });  
@@ -21,7 +21,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
 	app_distdir: 'dist/app',
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n' +
+            '/*! https://github.com/niklr/angular-query-builder */\n',
 	// variables used for plugins below
     src:{
         js: ['src/**/*.js'],
@@ -68,12 +69,19 @@ module.exports = function(grunt) {
 	    }
 	},
 	uglify: {
-		app_dist:{
+		app_main:{
 			options:{
 				banner: "<%= banner %>"
 			},
 			src: '<%= app_distdir %>/js/<%= pkg.name %>.js',
 			dest: '<%= app_distdir %>/js/<%= pkg.name %>.min.js'
+		},
+		app_templates: {
+		    options: {
+		        banner: "<%= banner %>"
+		    },
+		    src: '<%= app_distdir %>/js/angular-query-builder-templates.js',
+		    dest: '<%= app_distdir %>/js/angular-query-builder-templates.min.js'
 		}
 	},
 	watch:{

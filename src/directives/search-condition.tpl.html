@@ -1,18 +1,21 @@
 ﻿<form class="form-inline aqb-search-condition" name="searchConditionForm">
-    <select ng-change="selectSourceField()"
+    <select name="sourceField"
+            ng-change="selectSourceField()"
             ng-model="selectedSourceField"
-            ng-class="searchConditionForm.$submitted && searchConditionForm.sourceField.$error.required ? 'input-error' : ''"
+            ng-class="searchConditionForm.$submitted && searchConditionForm.sourceField.$error.required ? 'aqb-input-error' : ''"
             ng-options="f.displayName for f in sourceType.sourceFields | orderBy:'position'" required></select>
 
-    <select ng-change="selectComparisonOperator()"
+    <select name="comparisonOperator"
+            ng-change="selectComparisonOperator()"
             ng-model="selectedComparisonOperator"
-            ng-class="searchConditionForm.$submitted && searchConditionForm.comparisonOperator.$error.required ? 'input-error' : ''"
+            ng-class="searchConditionForm.$submitted && searchConditionForm.comparisonOperator.$error.required ? 'aqb-input-error' : ''"
             ng-options="o.displayName for o in selectedSourceField.comparisonOperators | orderBy:'position'" required></select>
 
-    <input type="text"
+    <input name="inputItem"
+           type="text"
            id="{{searchConditionInputItemId}}"
            ng-model="inputItem.displayName"
-           ng-class="searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'input-error' : ''" required>
+           ng-class="searchConditionForm.$submitted && searchConditionForm.inputItem.$error.required ? 'aqb-input-error' : ''" required>
 
     <button class="btn" type="submit" ng-click="addCondition(searchConditionForm, $event)" ng-show="canAddCondition(conditionIndex)"><i class="icon-plus-sign"></i></button>
     <button class="btn" type="button" ng-click="removeCondition(conditionIndex)" ng-show="canRemoveCondition(conditionIndex)"><i class="icon-minus-sign"></i></button>
