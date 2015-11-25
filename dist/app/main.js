@@ -72,8 +72,12 @@
 
         if (!!group.groups && group.groups instanceof Array) {
             for (var x = 0; x < group.groups.length; x++) {
-                str += " <strong>" + group.logicalOperator.displayName + "</strong> ";
-                str += computeOutput(group.groups[x]);
+                if (!!group.logicalOperator && !!group.conditions) {
+                    if (group.conditions.length > 0 || x > 0) {
+                        str += " <strong>" + group.logicalOperator.displayName + "</strong> ";
+                    }
+                    str += computeOutput(group.groups[x]);
+                }
             }
         }
 
@@ -93,7 +97,9 @@
             }
         ]
     };
-    $scope.searchContainer = DemoData.getSearchContainer();
+    //$scope.searchContainer = emptySearchContainer;
+    $scope.searchContainer = DemoData.getSearchContainer1();
+    //$scope.searchContainer = DemoData.getSearchContainer2();
 }])
 
 .provider('DemoData', function DemoDataProvider() {
@@ -357,7 +363,7 @@
                 }
             ];
         };
-        this.getSearchContainer = function () {
+        this.getSearchContainer1 = function () {
             return {
                 "groups": [
                     {
@@ -442,6 +448,110 @@
                                              "isTypeahead": true
                                          }
                                      }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            };
+        }
+        this.getSearchContainer2 = function () {
+            return {
+                "groups": [
+                    {
+                        "logicalOperator": {
+                            "name": "Or",
+                            "displayName": "OR"
+                        },
+                        "sourceType": {
+                            "name": "Objects",
+                            "displayName": "Objects"
+                        },
+                        "conditions": [
+                        ],
+                        "groups": [
+                            {
+                                "logicalOperator": {
+                                    "name": "And",
+                                    "displayName": "AND"
+                                },
+                                "sourceType": {
+                                    "name": "RelatedObjects",
+                                    "displayName": "Related Objects"
+                                },
+                                "conditions": [
+                                    {
+                                        "sourceField": {
+                                            "name": "AnatomicalRegion",
+                                            "displayName": "Anatomical Region"
+                                        },
+                                        "comparisonOperator": {
+                                            "name": "Equals",
+                                            "displayName": "="
+                                        },
+                                        "inputItem": {
+                                            "data": "7203",
+                                            "displayName": "Kidney",
+                                            "isTypeahead": true
+                                        }
+                                    },
+                                    {
+                                        "sourceField": {
+                                            "name": "Type",
+                                            "displayName": "Type"
+                                        },
+                                        "comparisonOperator": {
+                                            "name": "Equals",
+                                            "displayName": "="
+                                        },
+                                        "inputItem": {
+                                            "data": "RawImage",
+                                            "displayName": "Raw Image",
+                                            "isTypeahead": true
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "logicalOperator": {
+                                    "name": "And",
+                                    "displayName": "AND"
+                                },
+                                "sourceType": {
+                                    "name": "RelatedObjects",
+                                    "displayName": "Related Objects"
+                                },
+                                "conditions": [
+                                    {
+                                        "sourceField": {
+                                            "name": "AnatomicalRegion",
+                                            "displayName": "Anatomical Region"
+                                        },
+                                        "comparisonOperator": {
+                                            "name": "Equals",
+                                            "displayName": "="
+                                        },
+                                        "inputItem": {
+                                            "data": "7203",
+                                            "displayName": "Kidney",
+                                            "isTypeahead": true
+                                        }
+                                    },
+                                    {
+                                        "sourceField": {
+                                            "name": "Type",
+                                            "displayName": "Type"
+                                        },
+                                        "comparisonOperator": {
+                                            "name": "Equals",
+                                            "displayName": "="
+                                        },
+                                        "inputItem": {
+                                            "data": "RawImage",
+                                            "displayName": "Raw Image",
+                                            "isTypeahead": true
+                                        }
+                                    }
                                 ]
                             }
                         ]

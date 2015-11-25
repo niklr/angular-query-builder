@@ -1,4 +1,4 @@
-/*! angular-query-builder - v1.0.0 - 2015-10-29 */
+/*! angular-query-builder - v1.0.0 - 2015-11-25 */
 /*! https://github.com/niklr/angular-query-builder */
 angular.module('angular-query-builder', [
     'ngAnimate',
@@ -165,7 +165,6 @@ angular.module('aqb.src.directives.search-condition', [])
             // Input items end
 
             $scope.canAddCondition = $scope.$parent.canAddCondition;
-            $scope.canRemoveCondition = $scope.$parent.canRemoveCondition;
             $scope.addCondition = $scope.$parent.addCondition;
             $scope.removeCondition = $scope.$parent.removeCondition;
         }],
@@ -315,21 +314,25 @@ angular.module('aqb.src.directives.search-group', ['aqb.src.helpers.recursion'])
                 return canAddCondition;
             };
 
-            $scope.canRemoveCondition = function (index) {
-                return $scope.group.conditions.length > 1;
-            };
+            $scope.addCondition = function (form) {
+                var isValid = false;
+                if (!!form) {
+                    if (form.$valid) {
+                        isValid = true;
+                    }
+                }
+                else {
+                    isValid = true;
+                }
 
-            $scope.addCondition = function (form, $event) {
-                if (form.$valid) {
+                if (isValid) {
                     var newCondition = {};
                     $scope.group.conditions.push(newCondition);
                 }
             };
 
             $scope.removeCondition = function (index) {
-                if ($scope.group.conditions.length > 1) {
-                    $scope.group.conditions.splice(index, 1);
-                }
+                $scope.group.conditions.splice(index, 1);
             };
 
             // Condition functions end

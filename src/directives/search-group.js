@@ -142,21 +142,25 @@
                 return canAddCondition;
             };
 
-            $scope.canRemoveCondition = function (index) {
-                return $scope.group.conditions.length > 1;
-            };
+            $scope.addCondition = function (form) {
+                var isValid = false;
+                if (!!form) {
+                    if (form.$valid) {
+                        isValid = true;
+                    }
+                }
+                else {
+                    isValid = true;
+                }
 
-            $scope.addCondition = function (form, $event) {
-                if (form.$valid) {
+                if (isValid) {
                     var newCondition = {};
                     $scope.group.conditions.push(newCondition);
                 }
             };
 
             $scope.removeCondition = function (index) {
-                if ($scope.group.conditions.length > 1) {
-                    $scope.group.conditions.splice(index, 1);
-                }
+                $scope.group.conditions.splice(index, 1);
             };
 
             // Condition functions end

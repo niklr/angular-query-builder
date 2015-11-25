@@ -132,7 +132,6 @@
             // Input items end
 
             $scope.canAddCondition = $scope.$parent.canAddCondition;
-            $scope.canRemoveCondition = $scope.$parent.canRemoveCondition;
             $scope.addCondition = $scope.$parent.addCondition;
             $scope.removeCondition = $scope.$parent.removeCondition;
         }],
