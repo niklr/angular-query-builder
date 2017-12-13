@@ -18,6 +18,7 @@ Additional features:
 Table of Content
 * [Dependencies](#dependencies)
 * [Basic setup](#basic_setup)
+* [Configuration](#configuration)
 * [Terminology](#terminology)
 * [Building](#building)
 
@@ -153,13 +154,21 @@ angular.module('app', [
 }]);
 ```
 
+## Configuration <a name="configuration"></a>
+
+* `AppConfig.setMaxGroups` Sets the maximum amount of groups the user is able to create.
+* `AppConfig.setMaxConditions` Sets the maximum amount of conditions the user is able to create.
+
 ## Terminology <a name="terminology"></a>
 
 Angular Query Builder differentiates between `SearchContainer`, `Group`, `Condition`, `SourceType`, `SourceField`, `ComparisonOperator`, `LogicalOperator` and `InputItem`. Each object can be dynamically defined within the $scope of the AngularJS controller.
 
 `SearchContainer` can contain one or multiple `Group`.
+
 `Group` consists of a `SourceType`, `LogicalOperator` and one or multiple `Condition`.
+
 `Condition` consists of a `SourceField`, `ComparisonOperator` and an `InputItem`.
+
 `LogicalOperator` defines how each `Condition` in a `Group` should be logically connected. The `LogicalOperator` object consists of the following keys:
 
 - `name` is a string
@@ -189,7 +198,30 @@ Angular Query Builder differentiates between `SearchContainer`, `Group`, `Condit
 
 ## Building <a name="building"></a>
 
-After installing [Node.js](https://nodejs.org/) and [Grunt](https://gruntjs.com/) just run:
+In order to build Angular Query Builder, ensure that you have [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/) installed.
 
-    npm install
-    grunt release
+Clone a copy of the repo:
+
+```bash
+git clone https://github.com/niklr/angular-query-builder.git
+```
+
+Change to the angular-query-builder directory:
+
+```bash
+cd angular-query-builder
+```
+
+Install [Grunt](https://gruntjs.com/) and dev dependencies:
+
+```bash
+npm install -g grunt-cli
+npm install
+```
+
+Use one of the following to build:
+
+```
+grunt release               # Builds into dist
+grunt release-watch         # Same as release + watching for changes
+```
