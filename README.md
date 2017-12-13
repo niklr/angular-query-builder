@@ -3,7 +3,7 @@ Angular Query Builder
 
 Demo: http://niklr.github.io/angular-query-builder
 
-This is a sample HTML / JavaScript application that demonstrates how to use AngularJS to create a dynamic query building web UI.
+This is a sample HTML / JavaScript application that demonstrates how to use AngularJS in combination with Bootstrap to create a dynamic query building web user interface.
 
 The project was inspired by: https://github.com/mfauveau/angular-query-builder
 
@@ -18,7 +18,8 @@ Additional features:
 Table of Content
 * [Dependencies](#dependencies)
 * [Basic setup](#basic_setup)
-* [Building process](#building)
+* [Terminology](#terminology)
+* [Building](#building)
 
 ## Dependencies <a name="dependencies"></a>
 
@@ -101,22 +102,18 @@ angular.module('app', [
         {
             "name": "Objects",
             "displayName": "Objects",
-            "position": 1,
             "sourceFields": [
                 {
                     "name": "ObjectId",
                     "displayName": "Id",
-                    "position": 1,
                     "comparisonOperators": [
                         {
                             "name": "Equals",
-                            "displayName": "=",
-                            "position": 1
+                            "displayName": "="
                         },
                         {
                             "name": "NotEquals",
-                            "displayName": "!=",
-                            "position": 2
+                            "displayName": "!="
                         }
                     ]
                 }
@@ -127,13 +124,11 @@ angular.module('app', [
     $scope.logicalOperators = [
         {
             "name": "And",
-            "displayName": "AND",
-            "position": 1
+            "displayName": "AND"
         },
         {
             "name": "Or",
-            "displayName": "OR",
-            "position": 2
+            "displayName": "OR"
         }
     ];
 
@@ -143,6 +138,10 @@ angular.module('app', [
                 "sourceType": {
                     "name": "Objects",
                     "displayName": "Objects"
+                },
+                "logicalOperator": {
+                    "name": "And",
+                    "displayName": "AND"
                 },                
                 "conditions": [
                     {}
@@ -154,7 +153,41 @@ angular.module('app', [
 }]);
 ```
 
-## Building process <a name="building"></a>
+## Terminology <a name="terminology"></a>
+
+Angular Query Builder differentiates between `SearchContainer`, `Group`, `Condition`, `SourceType`, `SourceField`, `ComparisonOperator`, `LogicalOperator` and `InputItem`. Each object can be dynamically defined within the $scope of the AngularJS controller.
+
+`SearchContainer` can contain one or multiple `Group`.
+`Group` consists of a `SourceType`, `LogicalOperator` and one or multiple `Condition`.
+`Condition` consists of a `SourceField`, `ComparisonOperator` and an `InputItem`.
+`LogicalOperator` defines how each `Condition` in a `Group` should be logically connected. The `LogicalOperator` object consists of the following keys:
+
+- `name` is a string
+- `displayName` is a string
+
+`SourceType` basically represents the source to be searched. It is possible to define multiple `SourceType` but in most cases one is sufficient. The `SourceType` object consists of the following keys:
+
+- `name` is a string
+- `displayName` is a string
+- `sourceFields` is an array of `SourceField` objects
+
+`SourceField` defines the available options for the first dropdown element of each `Condition`. The `SourceField` object consists of the following keys:
+
+- `name` is a string
+- `displayName` is a string
+- `comparisonOperators` is an array of `ComparisonOperator` objects
+
+`ComparisonOperator` defines the available options for the second dropdown element of each `Condition`. The `ComparisonOperator` object consists of the following keys:
+
+- `name` is a string
+- `displayName` is a string
+
+`InputItem` contains the data entered by the user. The `InputItem` object consists of the following keys:
+
+- `data` is a string
+- `displayName` is a string
+
+## Building <a name="building"></a>
 
 After installing [Node.js](https://nodejs.org/) and [Grunt](https://gruntjs.com/) just run:
 
